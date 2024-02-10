@@ -18,10 +18,19 @@ class CategoryManager
     public function find(int $id): ?Category
     {
         return $this->categoryRepository->find($id);
-    }           
+    }  
+    public function getRepository(): CategoryRepository
+    {
+        return $this->categoryRepository;
+    }         
     public function create():Category
     {
         $category = new Category();
+        return $category;
+    }
+    public function persist(Category $category):Category
+    {
+        $this->em->persist($category);
         return $category;
     }
     public function save(Category $category): Category{
